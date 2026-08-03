@@ -1,0 +1,26 @@
+#!/bin/sh
+# post-commit: if this commit fixes a reported bug, close it and notify the reporter.
+#
+# Looks for "(bug <id>)" in the commit subject and Bug-Note: / Bug-Resolution:
+# trailers in the body, then calls your bug:resolve CLI (see SPEC.md Part D).
+# Swap `pnpm` for your package runner. Wire with:
+#   git config core.hooksPath .githooks
+#
+# This hook NEVER fails the commit; the commit already landed.
+
+msg=$(git log -1 --pretty=%B)
+id=$(printf '%s' "$msg" | sed -n 's/.*(bug \([0-9a-f][0-9a-f-]\{5,\}\)).*/\1/p' | head -1)
+[ -z "$id" ] && exit 0                                  # not a bug-fixing commit -> no-op
+
+note=$(printf '%s' "$msg"       | sed -n 's/^Bug-Note:[[:space:]]*//p'       | head -1)
+resolution=$(printf '%s' "$msg" | sed -n 's/^Bug-Resolution:[[:space:]]*//p' | head -1)
+
+if [ -n "$resolution" ] && [ "$resolution" != "fixed" ]; then
+  pnpm bug:resolve "$id" --via commit --resolution "$resolution" ${note:+--note "$note"}
+elif [ -n "$note" ]; then
+  pnpm bug:resolve "$id" --via commit --note "$note"
+else
+  echo "WARNING: commit landed but bug $id was NOT closed. A 'fixed' close needs a 'Bug-Note:' trailer."
+  echo "         Amend it (git commit --amend) or run: pnpm bug:resolve $id --note \"...\""
+fi
+exit 0
