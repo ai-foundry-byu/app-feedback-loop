@@ -8,23 +8,25 @@ post-commit hook. Most of the production lessons in `SPEC.md` were learned
 here, including the textarea capture trap, the `keepalive` 64KB cap, and the
 storage 404-as-PNG trap.
 
-![The feedback widget](widget.png)
+Screenshots below were taken on a dev instance with a throwaway account and
+dummy data; the UI is the production UI.
 
-The widget: docked launcher, auto-captured screenshot with "Include this
-screenshot" on by default, one textarea with dictation, the three-kind chip
-row, optimistic send.
+![The teacher dashboard with the feedback widget open](widget.png)
+
+The widget, open over the teacher dashboard: auto-captured screenshot with
+"Include this screenshot" on by default and a "Mark it up" affordance, one
+textarea with dictation, the three-kind chip row (A bug / Confusing / An
+idea), optimistic Send. Note the docked Feedback launcher in the corner,
+paired with the Assistant tab on the same edge.
 
 ![The annotator](annotator.png)
 
-The annotator: box, arrow, pen, text, and redact over the captured PNG,
-flattened client-side before upload.
+The annotator: box, arrow, draw, text, and Hide (redaction) over the captured
+screenshot, with the note editable in place. Annotations flatten into the PNG
+client-side before upload.
 
-![The admin inbox](inbox.png)
+![The dashboard](dashboard.png)
 
-The inbox and detail view: status tabs, severity triage, the copyable
-`/fix-bug <id>` command, and the full repair markdown one button away.
-
-![The reporter view](feedback-page.png)
-
-The reporter's `/feedback` page after a fix ships: reporter-safe status, the
-warm `Bug-Note:` from the fix commit, the two-way thread, and reopen.
+The surface the widget lives on. It is mounted once in the root layout, so
+every page in the app, including this dashboard, can file a report with the
+same three keystrokes.

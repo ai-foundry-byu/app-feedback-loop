@@ -83,12 +83,12 @@ This design inverts that, because it assumes **a coding agent does the fix**:
 
 ## What it looks like
 
-| The widget | Annotate and redact | The admin inbox |
+| The widget, live in LawGrader | Annotate and redact | The voice adaptation |
 |---|---|---|
-| ![Feedback widget](examples/grader/widget.png) | ![Annotator](examples/grader/annotator.png) | ![Admin inbox](examples/grader/inbox.png) |
+| ![Feedback widget](examples/grader/widget.png) | ![Annotator](examples/grader/annotator.png) | ![Eight Faces modal](examples/eight-faces/modal.png) |
 
-More in [`examples/`](./examples), including the closed-loop reporter view and
-the [Eight Faces voice adaptation](./docs/adaptations.md).
+More in [`examples/`](./examples), including the
+[Eight Faces voice adaptation](./docs/adaptations.md) write-up.
 
 ## What's in this repo
 
