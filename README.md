@@ -83,12 +83,12 @@ This design inverts that, because it assumes **a coding agent does the fix**:
 
 ## What it looks like
 
-| The widget, live in LawGrader | Annotate and redact | The voice adaptation |
+| The widget, live in LawGrader | Annotate and redact | The loop, closed |
 |---|---|---|
-| ![Feedback widget](examples/grader/widget.png) | ![Annotator](examples/grader/annotator.png) | ![Eight Faces modal](examples/eight-faces/modal.png) |
+| ![Feedback widget](examples/grader/widget.png) | ![Annotator](examples/grader/annotator.png) | ![The reporter's inbox with a fixed report](examples/grader/feedback-fixed.png) |
 
-More in [`examples/`](./examples), including the
-[Eight Faces voice adaptation](./docs/adaptations.md) write-up.
+More in [`examples/`](./examples). Adapting the loop to real-time media
+(voice, video) is covered in [docs/adaptations.md](./docs/adaptations.md).
 
 ## What's in this repo
 
