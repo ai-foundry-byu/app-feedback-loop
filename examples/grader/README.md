@@ -30,3 +30,18 @@ client-side before upload.
 The surface the widget lives on. It is mounted once in the root layout, so
 every page in the app, including this dashboard, can file a report with the
 same three keystrokes.
+
+![The reporter's feedback inbox](feedback-inbox.png)
+
+The reporter's `/feedback` page. Less a dashboard, more a filing cabinet:
+every report they have sent, searchable and filterable (All / Open / Fixed),
+with reporter-safe statuses, a highlighted "Needs your input" when the team
+asked a question, and the impact stat ("You've sent 3, 1 shipped a fix") that
+makes reporting feel worthwhile.
+
+![A fixed report, expanded](feedback-fixed.png)
+
+A fixed report expanded: the Submitted to Reviewing to Fixed timeline, their
+own words and screenshot, and the "We fixed it" card carrying the exact
+`Bug-Note:` sentence from the fix commit, with "See what changed", a deep
+link back to where they reported it, and "Didn't resolve it? Reopen".
