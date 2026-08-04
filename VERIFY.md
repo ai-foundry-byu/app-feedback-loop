@@ -50,7 +50,18 @@ are listed explicitly.
 - [ ] Reporter reply and reopen both work, and reopen appends a `reopened`
       event without erasing the prior resolution from the event history.
 
-## 4. Admin
+## 4. Triage (run the block for the profile you built)
+
+Profile A, agent-first:
+
+- [ ] `/triage-bugs` over the test window writes a `brief.json` per report
+      and renders `.bugs/triage-<date>.html` with every report in the nav.
+- [ ] Each brief separates `facts` / `synthesis` / `claims` and flags at
+      least one `verify_in_code` claim where the data warrants it.
+- [ ] `bug:ask <id> "..."` posts a `team` message, notifies the reporter,
+      and flips the reporter's card to "Needs your input".
+
+Profile B, admin inbox:
 
 - [ ] `/admin/bugs` lists the report; non-admin access is refused.
 - [ ] The detail page shows the screenshot (via signed URL or the proxy

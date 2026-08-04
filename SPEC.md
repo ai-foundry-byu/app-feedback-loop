@@ -546,7 +546,28 @@ The reporter-facing surface lists the user's own reports with **reporter-safe st
 
 ---
 
-## Part F, The admin inbox and triage
+## Two build profiles: do you need the admin route at all?
+
+Everything before this point is required. The web admin inbox below is not,
+and for an AI-native team it is often the wrong first build. Pick a profile:
+
+**Profile A, agent-first (default for teams that triage in Claude Code).**
+No `/admin/bugs` route. Triage happens through the bundled
+[`triage-bugs`](./skills/triage-bugs/SKILL.md) skill, which reads a window of
+reports and renders a local two-pane HTML dashboard: that dashboard is the
+inbox read-view. Actions go through the CLIs: `bug:resolve` closes,
+`bug:ask` posts the team question, `/fix-bug <id>` is the handoff (no copy
+button needed, you are already in the terminal). Screenshots are viewed
+locally by the agent; no signed-URL surface ships. You still build everything
+the reporter touches: the widget, the intake, the `/feedback` page, the
+notifications, and the post-commit hook.
+
+**Profile B, full admin inbox.** Build Part F below as written. Choose this
+when non-technical teammates triage, when triage happens on phones, or when
+you want the reporter thread answerable from a web surface. Profile A can
+grow into Profile B later; the schema and close path are identical.
+
+## Part F, The admin inbox and triage (Profile B)
 
 ### Inbox, `/admin/bugs`
 
@@ -592,7 +613,7 @@ The behavior, the schema, the constraints, and the loop are the spec. Auth, stor
 5. **Resolution core**, `buildRepairMarkdown()`, `resolveBug()` (with the `fixed`-needs-a-note rule and the reporter notification), `reopenBug()`, and the `bug:resolve` CLI.
 6. **Close-the-loop**, the `post-commit` hook and the commit-trailer convention.
 7. **Reporter surface**, the `/feedback` page (safe status labels, thread, reopen, impact badge) and the notification deep-link.
-8. **Admin inbox**, list + detail/triage, signed-URL screenshots, the "Open in Claude Code" handoff, and the resolve/triage/reopen/ask actions.
+8. **Triage surface**, per your profile: Profile A wires the [`triage-bugs`](./skills/triage-bugs/SKILL.md) skill and the `bug:ask` CLI; Profile B builds the admin inbox (list + detail/triage, signed-URL screenshots, the "Open in Claude Code" handoff, and the resolve/triage/reopen/ask actions).
 9. **Wire the agent side**, install the [`fix-bug`](./skills/fix-bug/SKILL.md) skill so `/fix-bug <id>` pulls the row, materializes the repair markdown + context + screenshot, and follows the verify-first procedure before fixing and committing with a `Bug-Note:`.
 10. **Prove it**, run [`VERIFY.md`](./VERIFY.md) end to end and show the results.
 

@@ -97,6 +97,7 @@ More in [`examples/`](./examples), including the
 | [`SPEC.md`](./SPEC.md) | The build spec: widget, schema, context bundle, backend, hook, inbox, reporter page. Stack-agnostic, Supabase shown as the worked default. |
 | [`VERIFY.md`](./VERIFY.md) | The self-test checklist the implementing agent runs before claiming done. |
 | [`skills/fix-bug/`](./skills/fix-bug/SKILL.md) | The agent side: `/fix-bug <id>` loads the report and enforces verify-before-fix. Drop into `.claude/skills/`. |
+| [`skills/triage-bugs/`](./skills/triage-bugs/SKILL.md) | Fast DB-only triage: a confidence-scored `brief.json` per report plus one local HTML dashboard. For agent-first teams, this dashboard replaces the web admin inbox entirely (SPEC's Profile A). |
 | [`githooks/post-commit`](./githooks/post-commit) | The keystone hook: a commit tagged `(bug <id>)` with a `Bug-Note:` closes the report and notifies the reporter. |
 | [`examples/`](./examples) | Real production implementations with screenshots. |
 | [`docs/adaptations.md`](./docs/adaptations.md) | Adapting the loop to real-time media (the Eight Faces voice-coach pattern). |

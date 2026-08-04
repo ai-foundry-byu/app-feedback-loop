@@ -21,6 +21,12 @@ Call it `$ID`.
 
 ## Procedure
 
+0. **Warm start, if triage ran first.** If `.bugs/<short-id>/brief.json` exists
+   (written by the `triage-bugs` skill), read it before anything else: trust its
+   inlined `facts`, but treat every claim marked `verify_in_code` and the
+   `reporter_theory` as hypotheses to reproduce and disprove, never a diagnosis
+   to inherit.
+
 1. **Load env.** The connection string and storage keys live in your env file
    (e.g. `.env.local`): `DATABASE_URL`, `PUBLIC_SUPABASE_URL`,
    `SUPABASE_SERVICE_ROLE_KEY` or your project's names. Read them from there;
